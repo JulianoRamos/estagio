@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="bootstrap-theme.min.css" />
+	<h:outputStylesheet library="css" name="login.css" />
+	<h:outputScript library="scripts" name="bootstrap.min.js" target="head" />
+</h:head>
+<h:body>
+	<div class="container">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="panel panel-primary" style="margin-bottom: 0">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<strong>Login </strong>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<h:form role="form" enctype="multipart/form-data">
+							<div class="form-group">
+								<h:outputLabel for="inputUsuario">Usuário</h:outputLabel>
+								<h:inputText styleClass="form-control" id="inputUsuario"
+									value="#{usuarioBean.usuario.login}" required="true" />
+							</div>
+							<div class="form-group">
+								<h:outputLabel for="inputSenha">Senha
+								</h:outputLabel>
+								<h:inputSecret styleClass="form-control" id="inputSenha"
+									value="#{usuarioBean.usuario.senha}" required="true" />
+							</div>
+							<h:commandButton styleClass="btn btn-sm btn-primary col-sm-3"
+								id="buttonEntrar" value="Entrar" action="#{usuarioBean.logar}" />
+							<h:outputText value="#{usuarioBean.validacaoUsuarioSenha}"
+								styleClass="col-sm-7" style="color: red"
+								rendered="#{not empty usuarioBean.validacaoUsuarioSenha}" />
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

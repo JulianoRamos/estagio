@@ -1,0 +1,344 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://stella.caelum.com.br/faces2"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="/restrito/index.xhtml">
+		<ui:define name="main">
+			<h1 class="page-header">Cadastro de Clientes</h1>
+
+			<div class="container col-md-offset-0">
+				<div class="row">
+					<div class="form-horizontal">
+						<h:outputLabel for="inputBusca"
+							styleClass="col-sm-1 control-label">Buscar</h:outputLabel>
+						<div class="input-group col-sm-5">
+							<h:inputText styleClass="form-control" id="inputBusca"
+								value="#{produtoBean.value}" />
+							<div class="input-group-btn">
+								<button type="submit" class="btn btn-default"
+									data-toggle="modal" data-target="#modalProduto">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<hr class="col-md-6" />
+					<h:form prependId="false" styleClass="form-horizontal" role="form"
+						enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-horizontal">
+									<div class="form-group">
+										<h:outputLabel for="inputCodigo"
+											styleClass="col-sm-3 control-label">Código</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputCodigo"
+												value="#{clienteBean.cliente.id}" disabled="true" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputRazaoSocial"
+											styleClass="col-sm-3 control-label">Razão Social</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputRazaoSocial"
+												label="Razão Social" required="true"
+												value="#{clienteBean.cliente.razaoSocial}">
+											</h:inputText>
+											<h:message for="inputRazaoSocial" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputNomeFantasia"
+											styleClass="col-sm-3 control-label">Nome Fantasia</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputNomeFantasia"
+												label="Nome Fantasia"
+												value="#{clienteBean.cliente.nomeFantasia}">
+											</h:inputText>
+											<h:message for="inputNomeFantasia" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputCpf"
+											styleClass="col-sm-3 control-label">Cpf</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputCpf"
+												label="Cpf" value="#{clienteBean.cliente.cpf}">
+												<s:validateCPF formatted="true" />
+											</h:inputText>
+											<h:message for="inputCpf" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputCnpf"
+											styleClass="col-sm-3 control-label">Cnpj</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputCnpf"
+												label="Cnpj" value="#{clienteBean.cliente.cnpj}">
+												<s:validateCNPJ formatted="true" />
+											</h:inputText>
+											<h:message for="inputCnpf" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputInscricaoEstadual"
+											styleClass="col-sm-3 control-label">Insc. Estadual</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control"
+												id="inputInscricaoEstadual" label="Inscrição Estadual"
+												value="#{clienteBean.cliente.inscricaoEstadual}">
+												<f:convertNumber type="number" />
+											</h:inputText>
+											<h:message for="inputInscricaoEstadual" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputTelefone"
+											styleClass="col-sm-3 control-label">Telefone</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputTelefone"
+												label="Telefone" required="true"
+												value="#{clienteBean.cliente.telefone}">
+												<f:convertNumber type="number" />
+											</h:inputText>
+											<h:message for="inputTelefone" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputCelular"
+											styleClass="col-sm-3 control-label">Celular</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputCelular"
+												label="Celular" value="#{clienteBean.cliente.celular}">
+												<f:convertNumber type="number" />
+											</h:inputText>
+											<h:message for="inputCelular" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputEmail"
+											styleClass="col-sm-3 control-label">E-mail</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputEmail"
+												label="E-mail" required="true"
+												value="#{clienteBean.cliente.email}"
+												validatorMessage="E-mail inválido.">
+												<f:validateRegex
+													pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+											</h:inputText>
+											<h:message for="inputEmail" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputObservacao"
+											styleClass="col-sm-3 control-label">Observação</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputTextarea styleClass="form-control"
+												id="inputObservacao" label="Observação" required="true"
+												value="#{clienteBean.cliente.observacao}">
+											</h:inputTextarea>
+											<h:message for="inputObservacao" style="color:red" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6" id="endereco">
+								<div class="form-group">
+									<h:outputLabel for="inputDescricaoEndereco"
+										styleClass="col-sm-3 control-label">Descrição</h:outputLabel>
+									<div class="col-sm-7">
+										<h:inputText styleClass="form-control"
+											id="inputDescricaoEndereco" required="true" label="Descrição"
+											value="#{clienteBean.cliente.enderecos.descricao}" />
+										<h:message for="inputDescricaoEndereco" style="color:red" />
+									</div>
+								</div>
+								<div class="form-group">
+									<h:outputLabel for="inputNumero"
+										styleClass="col-sm-3 control-label">Número</h:outputLabel>
+									<div class="col-sm-7">
+										<h:inputText styleClass="form-control" id="inputNumero"
+											required="true" label="Número"
+											value="#{clienteBean.cliente.enderecos.numero}">
+											<f:convertNumber type="number" />
+										</h:inputText>
+										<h:message for="inputNumero" style="color:red" />
+									</div>
+								</div>
+								<div class="form-group">
+									<h:outputLabel for="inputComplemento"
+										styleClass="col-sm-3 control-label">Complemento</h:outputLabel>
+									<div class="col-sm-7">
+										<h:inputText styleClass="form-control" id="inputComplemento"
+											required="true" label="Complemento"
+											value="#{clienteBean.cliente.enderecos.complemento}">
+											<f:convertNumber type="number" />
+										</h:inputText>
+										<h:message for="inputComplemento" style="color:red" />
+									</div>
+								</div>
+								<div class="form-group">
+									<h:outputLabel for="inputCep"
+										styleClass="col-sm-3 control-label">Cep</h:outputLabel>
+									<div class="col-sm-7">
+										<h:inputText styleClass="form-control" id="inputCep"
+											required="true" label="Cep"
+											value="#{clienteBean.cliente.enderecos.cep}">
+											<f:convertNumber type="number" />
+										</h:inputText>
+										<h:message for="inputCep" style="color:red" />
+									</div>
+								</div>
+								<div class="form-group">
+									<h:outputLabel for="inputDescricaoBairro"
+										styleClass="col-sm-3 control-label">Bairro</h:outputLabel>
+									<div class="col-sm-7">
+										<h:inputText styleClass="form-control"
+											id="inputDescricaoBairro" required="true" label="Bairro"
+											value="#{clienteBean.cliente.enderecos.descricaoBairro}" />
+										<h:message for="inputDescricaoBairro" style="color:red" />
+									</div>
+								</div>
+								<div class="form-group">
+									<h:outputLabel for="selectEstado"
+										styleClass="col-sm-3 control-label">Estado</h:outputLabel>
+									<div class="col-sm-7">
+										<h:selectOneMenu styleClass="form-control"
+											value="#{clienteBean.estadoSelecionado}"
+											converter="estadoConverter" id="selectEstado">
+											<f:selectItem itemLabel="Selecione o Estado"
+												noSelectionOption="true" />
+											<f:selectItems value="#{clienteBean.estados}" var="estado"
+												itemValue="#{estado}" itemLabel="#{estado.descricao}" />
+											<f:ajax render="selectMunicipio" event="select"  />
+										</h:selectOneMenu>
+									</div>
+								</div>
+								<div class="form-group">
+									<h:outputLabel for="selectMunicipio"
+										styleClass="col-sm-3 control-label">Município</h:outputLabel>
+									<div class="col-sm-7">
+										<h:selectOneMenu styleClass="form-control"
+											value="#{clienteBean.municipioSelecionado}"
+											converter="municipioConverter" required="true"
+											requiredMessage="Selecione o Município" id="selectMunicipio">
+											<f:selectItem itemLabel="Selecione o Município"
+												noSelectionOption="true" />
+											<f:selectItems value="#{clienteBean.municipios}"
+												var="municipio" itemValue="#{municipio}"
+												itemLabel="#{municipio.descricao}" />
+										</h:selectOneMenu>
+
+									</div>
+								</div>
+								<div class="page-header" />
+								<div class="form-group">
+									<h:outputLabel for="inputUsuario"
+										styleClass="col-sm-3 control-label">Usuario</h:outputLabel>
+									<div class="col-sm-7">
+										<h:inputText styleClass="form-control" id="inputUsuario"
+											label="Usuario" required="true"
+											value="#{clienteBean.cliente.usuario.login}" />
+										<h:message for="inputUsuario" style="color:red" />
+									</div>
+								</div>
+								<div class="form-group">
+									<h:outputLabel for="inputSenha"
+										styleClass="col-sm-3 control-label">Senha</h:outputLabel>
+									<div class="col-sm-7">
+										<h:inputSecret styleClass="form-control" id="inputSenha"
+											label="Senha" required="true"
+											value="#{clienteBean.cliente.usuario.senha}">
+										</h:inputSecret>
+										<h:message for="inputSenha" style="color:red" />
+									</div>
+								</div>
+								<div class="form-group">
+									<h:outputLabel for="inputConfirmarSenha"
+										styleClass="col-sm-3 control-label">Confirmar Senha</h:outputLabel>
+									<div class="col-sm-7">
+										<h:inputSecret styleClass="form-control"
+											id="inputConfirmarSenha" label="Confirmar Senha"
+											required="true" value="#{clienteBean.cliente.usuario.senha}">
+										</h:inputSecret>
+										<h:message for="inputConfirmarSenha" style="color:red" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" align="right">
+							<div class="col-md-5">
+								<div class="btn-group">
+									<h:commandButton styleClass="btn btn-primary" value="Salvar"
+										action="#{clienteBean.salvar}" />
+									<h:commandButton styleClass="btn btn-default" value="Cancelar"
+										immediate="true" action="#{clienteBean.cancelar}">
+										<f:ajax execute="@this" render="@form" />
+									</h:commandButton>
+								</div>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modalProduto" tabindex="-1" role="dialog"
+				aria-labelledby="modalTitulo" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="modalTitulo">Produtos</h4>
+						</div>
+						<div class="modal-body">
+							<h:form>
+								<h:dataTable value="#{produtoBean.produtos}" var="produto"
+									styleClass="table table-striped" border="1">
+									<h:column>
+										<f:facet name="header">Código</f:facet>
+									#{produto.id}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Descrição</f:facet>
+									#{produto.descricao}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Tamanho</f:facet>	
+									#{produto.tamanho}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Cor</f:facet>		
+									#{produto.cor}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Valor de Custo</f:facet>		
+									#{produto.valorCusto}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Valor de Venda</f:facet>
+									#{produto.valorVenda}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Ações</f:facet>
+										<h:commandLink action="#{automovelBean.excluir(automovel)}">Ver</h:commandLink>
+									</h:column>
+								</h:dataTable>
+							</h:form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

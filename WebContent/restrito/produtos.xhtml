@@ -1,0 +1,201 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="/restrito/index.xhtml">
+		<ui:define name="main">
+			<h1 class="page-header">Cadastro de Produtos</h1>
+
+			<div class="container col-md-offset-0">
+				<div class="row">
+					<div class="page-header">
+						<div class="form-horizontal">
+							<h:outputLabel for="inputBusca"
+								styleClass="col-sm-1 control-label">Buscar</h:outputLabel>
+							<div class="input-group col-sm-5">
+								<h:inputText styleClass="form-control" id="inputBusca"
+									value="#{produtoBean.value}" />
+								<div class="input-group-btn">
+									<button type="submit" class="btn btn-default"
+										data-toggle="modal" data-target="#modalProduto">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<h:form prependId="false" styleClass="form-horizontal" role="form"
+						enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-horizontal">
+									<div class="form-group">
+										<h:outputLabel for="inputCodigo"
+											styleClass="col-sm-3 control-label">Código</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputCodigo"
+												value="#{produtoBean.produto.id}" disabled="true" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputDescricao"
+											styleClass="col-sm-3 control-label">Descrição</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputDescricao"
+												label="Descrição" required="true"
+												value="#{produtoBean.produto.descricao}" />
+											<h:message for="inputDescricao" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputCor"
+											styleClass="col-sm-3 control-label">Cor</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputCor"
+												label="Cor" required="true"
+												value="#{produtoBean.produto.cor}" />
+											<h:message for="inputCor" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="selectSexo"
+											styleClass="col-sm-3 control-label">Sexo</h:outputLabel>
+										<div class="col-sm-7">
+											<h:selectOneMenu styleClass="form-control" id="selectSexo"
+												value="#{produtoBean.produto.sexo}">
+												<f:selectItem id="itemUnissex" itemLabel="Unissex"
+													itemValue="U" />
+												<f:selectItem id="itemMasculino" itemLabel="Masculino"
+													itemValue="M" />
+												<f:selectItem id="itemFeminino" itemLabel="Feminino"
+													itemValue="F" />
+											</h:selectOneMenu>
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputTamanho"
+											styleClass="col-sm-3 control-label">Tamanho</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputTamanho"
+												label="Tamanho" required="true"
+												value="#{produtoBean.produto.tamanho}" />
+											<h:message for="inputTamanho" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputCusto"
+											styleClass="col-sm-3 control-label">Valor de Custo</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputCusto"
+												label="Valor de Custo" required="true"
+												value="#{produtoBean.produto.valorCusto}">
+												<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+											</h:inputText>
+											<h:message for="inputCusto" style="color:red" />
+										</div>
+									</div>
+									<div class="form-group">
+										<h:outputLabel for="inputVenda"
+											styleClass="col-sm-3 control-label">Valor de Venda</h:outputLabel>
+										<div class="col-sm-7">
+											<h:inputText styleClass="form-control" id="inputVenda"
+												label="Valor de Venda" required="true"
+												value="#{produtoBean.produto.valorVenda}">
+												<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+											</h:inputText>
+											<h:message for="inputVenda" style="color:red" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4" id="imagem">
+								<p:graphicImage styleClass="img-thumbnail" width="400"
+									height="280" alt="Imagem não está disponivel."
+									value="#{produtoBean.imagem}" />
+
+								<div class="form-group">
+									<h:outputLabel for="inputImagem">Imagem do Produto</h:outputLabel>
+									<h:inputFile id="inputImagem"
+										value="#{produtoBean.uploadedFile}">
+										<f:ajax execute="@this"
+											listener="#{produtoBean.carregarImagem}" render="@form" />
+									</h:inputFile>
+									<p class="help-block">Exemplo: calca.png, camisa.png .</p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-5" align="right">
+								<div class="btn-group">
+									<h:commandButton styleClass="btn btn-primary" value="Salvar"
+										action="#{produtoBean.salvar}" />
+									<h:commandButton styleClass="btn btn-default" value="Cancelar"
+										immediate="true" action="#{produtoBean.cancelar}">
+										<f:ajax execute="@this" render="@form" />
+									</h:commandButton>
+								</div>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modalProduto" tabindex="-1" role="dialog"
+				aria-labelledby="modalTitulo" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="modalTitulo">Produtos</h4>
+						</div>
+						<div class="modal-body">
+							<h:form>
+								<h:dataTable value="#{produtoBean.produtos}" var="produto"
+									styleClass="table table-striped" border="1">
+									<h:column>
+										<f:facet name="header">Código</f:facet>
+									#{produto.id}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Descrição</f:facet>
+									#{produto.descricao}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Tamanho</f:facet>	
+									#{produto.tamanho}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Cor</f:facet>		
+									#{produto.cor}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Valor de Custo</f:facet>		
+									#{produto.valorCusto}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Valor de Venda</f:facet>
+									#{produto.valorVenda}
+								</h:column>
+									<h:column>
+										<f:facet name="header">Ações</f:facet>
+										<h:commandLink action="#{automovelBean.excluir(automovel)}">Ver</h:commandLink>
+									</h:column>
+								</h:dataTable>
+							</h:form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

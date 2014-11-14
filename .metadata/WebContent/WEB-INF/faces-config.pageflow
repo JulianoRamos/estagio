@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14135889917340" configfile="/estagio/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf14136349762390" outlinks="pf14136349762391" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14136349762392" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14136349762391" path="login.xhtml"/>
+  <links id="pf14136349762391" target="pf14136349762392" source="pf14136349762390" outcome="login"/>
+</pageflow:Pageflow>
